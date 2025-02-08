@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./ImageGallery.css";
+import "../style/ImageGallery.css";
 
 const ImageGallery = () => {
   const [images, setImages] = useState([]);
@@ -88,9 +88,9 @@ const ImageGallery = () => {
       <h2>Image List</h2>
       <div className="image-list">
         {images.map((image) => (
-          <div key={image.id} className="image-card">
-            <h3>{image.title}</h3>
+          <div className="image-card" key={image.id}>
             <img src={image.url} alt={image.title} />
+            <h3>{image.title}</h3>
             <button onClick={() => deleteImage(image.id)}>Delete</button>
             <button onClick={() => startEdit(image)}>Edit</button>
           </div>
