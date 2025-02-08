@@ -1,0 +1,37 @@
+/* ImageGallery.css */
+.image-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.image-card img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.image-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+button {
+  margin: 5px;
+}
+
+input {
+  display: block;
+  margin: 10px 0;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
