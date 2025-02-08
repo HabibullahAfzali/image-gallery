@@ -1,3 +1,16 @@
+/* responsive code blog */
+@media (max-width: 768px) {
+  .image-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .image-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 .image-card {
   border: 1px solid #ddd;
   padding: 10px;
