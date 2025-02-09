@@ -1,4 +1,4 @@
-package com.imagegallery.image_gallery.entity;
+package com.imagegallery.image_gallery.core.model;
 
 import jakarta.persistence.*;
 import lombok.*;
