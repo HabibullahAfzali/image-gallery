@@ -39,8 +39,10 @@ src/main/java/com/imagegallery/image_gallery ├── core # Business logic │
    git clone <repository-url>
    cd image-gallery
 ## Run the Project:
-    ```bash
-    mvn spring-boot:run
+- open a terminal and run the following command
+   ```bash
+   mvn spring-boot:run
+   
 ## Image Gallery Frontend
 
 This is the frontend for an **Image Gallery Application** built with **React.js**. The application allows users to view, add, update, and delete images. It interacts with a Spring Boot backend via RESTful APIs.
@@ -90,5 +92,6 @@ The API base URL can be configured in the `services/imageService.js` file.
    npm install
 
 ### Run the Project:
-    ```bash
+- open a terminal and run the following command
+   ```bash
     npm start
