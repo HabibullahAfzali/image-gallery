@@ -39,4 +39,5 @@ The project is organized using **Hexagonal Architecture** to maintain a clean se
    git clone <repository-url>
    cd image-gallery
 ## Run the Project:
-- mvn spring-boot:run
+```bash
+ mvn spring-boot:run
