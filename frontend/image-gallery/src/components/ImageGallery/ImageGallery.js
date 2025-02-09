@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "../style/ImageGallery.css";
+import {
+  fetchImages,
+  addImage,
+  deleteImage,
+  updateImage,
+} from "../../services/imageService";
+import "./ImageGallery.css";
 
 const ImageGallery = () => {
   const [images, setImages] = useState([]);
   const [newImage, setNewImage] = useState({ title: "", url: "" });
   const [editingImage, setEditingImage] = useState(null);
 
-  // Fetch all images when component mounts
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/images")
+    fetchImages()
       .then((response) => setImages(response.data))
       .catch((error) => console.error("Error fetching images:", error));
   }, []);
 
-  // Handle input changes
   const handleInputChange = (e) => {
     setNewImage({ ...newImage, [e.target.name]: e.target.value });
   };
 
-  // Add a new image
-  const addImage = () => {
+  const handleAddImage = () => {
     if (newImage.title && newImage.url) {
-      axios
-        .post("http://localhost:8080/api/images", newImage)
+      addImage(newImage)
         .then((response) => {
           setImages([...images, response.data]);
           setNewImage({ title: "", url: "" });
@@ -33,23 +33,14 @@ const ImageGallery = () => {
     }
   };
 
-  // Delete an image
-  const deleteImage = (id) => {
-    axios
-      .delete(`http://localhost:8080/api/images/${id}`)
+  const handleDeleteImage = (id) => {
+    deleteImage(id)
       .then(() => setImages(images.filter((image) => image.id !== id)))
       .catch((error) => console.error("Error deleting image:", error));
   };
 
-  // Prepare to edit an image
-  const startEdit = (image) => {
-    setEditingImage(image);
-  };
-
-  // Update an image
-  const updateImage = () => {
-    axios
-      .put(`http://localhost:8080/api/images/${editingImage.id}`, editingImage)
+  const handleUpdateImage = () => {
+    updateImage(editingImage.id, editingImage)
       .then((response) => {
         const updatedImages = images.map((img) =>
           img.id === editingImage.id ? response.data : img
@@ -64,7 +55,6 @@ const ImageGallery = () => {
     <div className="container">
       <h1>Image Gallery</h1>
 
-      {/* Form to Add New Image */}
       <div>
         <h2>Add New Image</h2>
         <input
@@ -81,23 +71,21 @@ const ImageGallery = () => {
           value={newImage.url}
           onChange={handleInputChange}
         />
-        <button onClick={addImage}>Add Image</button>
+        <button onClick={handleAddImage}>Add Image</button>
       </div>
 
-      {/* List of Images */}
       <h2>Image List</h2>
       <div className="image-list">
         {images.map((image) => (
           <div className="image-card" key={image.id}>
             <img src={image.url} alt={image.title} />
             <h3>{image.title}</h3>
-            <button onClick={() => deleteImage(image.id)}>Delete</button>
-            <button onClick={() => startEdit(image)}>Edit</button>
+            <button onClick={() => handleDeleteImage(image.id)}>Delete</button>
+            <button onClick={() => setEditingImage(image)}>Edit</button>
           </div>
         ))}
       </div>
 
-      {/* Edit Image */}
       {editingImage && (
         <div>
           <h2>Edit Image</h2>
@@ -115,7 +103,7 @@ const ImageGallery = () => {
               setEditingImage({ ...editingImage, url: e.target.value })
             }
           />
-          <button onClick={updateImage}>Update Image</button>
+          <button onClick={handleUpdateImage}>Update Image</button>
           <button onClick={() => setEditingImage(null)}>Cancel</button>
         </div>
       )}
