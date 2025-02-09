@@ -40,7 +40,7 @@ The project is organized using **Hexagonal Architecture** to maintain a clean se
    cd image-gallery
 ## Run the Project:
    ```bash
-  mvn spring-boot:run
+     mvn spring-boot:run
 
 # Image Gallery Frontend
 
