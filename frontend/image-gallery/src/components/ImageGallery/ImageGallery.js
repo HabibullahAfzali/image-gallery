@@ -4,7 +4,7 @@ import {
   addImage,
   deleteImage,
   updateImage,
-} from "../../services/imageService";
+} from "../../services/ImageService";
 import "./ImageGallery.css";
 
 const ImageGallery = () => {
