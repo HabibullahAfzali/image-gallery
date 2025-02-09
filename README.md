@@ -17,7 +17,7 @@ The project is organized using **Hexagonal Architecture** to maintain a clean se
 - **Infrastructure**: Handles database access and configuration.
 
 ### Project Structure
-
+src/main/java/com/imagegallery/image_gallery ├── core # Business logic │    ├── model # Domain model (Image entity) │    ├── port # Ports (interfaces) for input and output │    └── service # Business service implementation    ├── adapter # Input and output adapters │    ├── in # Input adapter (REST Controller) │    └── out # Output adapter (JPA Repository Adapter)    └── infrastructure # Infrastructure (DB repository and configurations)
 
 ## API Endpoints
 
@@ -39,10 +39,9 @@ The project is organized using **Hexagonal Architecture** to maintain a clean se
    git clone <repository-url>
    cd image-gallery
 ## Run the Project:
-   ```bash
-     mvn spring-boot:run
-
-# Image Gallery Frontend
+    ```bash
+    mvn spring-boot:run
+## Image Gallery Frontend
 
 This is the frontend for an **Image Gallery Application** built with **React.js**. The application allows users to view, add, update, and delete images. It interacts with a Spring Boot backend via RESTful APIs.
 
@@ -53,7 +52,19 @@ This is the frontend for an **Image Gallery Application** built with **React.js*
 - Delete images from the gallery.
 
 ## Folder Structure
-src/ ├── components/ │ └── ImageGallery/ │ ├── ImageGallery.js # Main component for displaying images │ └── ImageGallery.css # Styles for the ImageGallery component ├── services/ │ └── imageService.js # API calls for interacting with the backend ├── style/ │ └── App.css # Global styles for the application ├── App.js # Main application component ├── index.js # Entry point of the React app └── reportWebVitals.js # Performance measurement script
+
+- `src/components/ImageGallery/`
+  - `ImageGallery.js` (Main component for displaying images)
+  - `ImageGallery.css` (Styles for the ImageGallery component)
+- `src/services/`
+  - `imageService.js` (API calls for interacting with the backend)
+- `src/style/`
+  - `App.css` (Global styles for the application)
+- `src/App.js` (Main application component)
+- `src/index.js` (Entry point of the React app)
+- `src/reportWebVitals.js` (Performance measurement script)
+
+
 
 
 ## API Integration
