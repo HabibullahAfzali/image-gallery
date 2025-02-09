@@ -30,7 +30,7 @@ src/main/java/com/imagegallery/image_gallery ├── core # Business logic │
 - Java
 - Spring Boot
 - JPA (Hibernate)
-- H2 Database (or any other database)
+- MYSQL DATABASE
 
 ## Running the Application
 
