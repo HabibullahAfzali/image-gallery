@@ -88,3 +88,7 @@ The API base URL can be configured in the `services/imageService.js` file.
    git clone <repository-url>
    cd frontend/image-gallery
    npm install
+
+### Run the Project:
+    ```bash
+    npm start
