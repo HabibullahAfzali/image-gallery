@@ -5,7 +5,7 @@ pipeline {
         // Environment variables
         DB_URL = "jdbc:mysql://localhost:3306/imagegallerydb"
         DB_USER = "root"
-        DB_PASSWORD = "password"
+        DB_PASSWORD = "admin@123"
     }
 
     stages {
