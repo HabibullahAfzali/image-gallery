@@ -7,7 +7,13 @@ pipeline {
         DB_USER = "root"
         DB_PASSWORD = "admin@123"
     }
-
+   stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    credentialsId: 'github-token', // Use the ID you set in Jenkins credentials
+                    url: 'https://github.com/HabibullahAfzali/image-gallery.git'
+            }
+        }
     stages {
         stage('Checkout') {
             steps {
