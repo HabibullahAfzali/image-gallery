@@ -1,7 +1,3 @@
-Share
-
-
-You said:
 pipeline {
     agent any
 
