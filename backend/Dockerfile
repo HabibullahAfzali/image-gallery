@@ -8,7 +8,8 @@ RUN mvn clean package -DskipTests
 # Use the official OpenJDK image to run the app
 FROM openjdk:17-jdk-slim
 WORKDIR /app
-COPY --from=build /app/target/your-app.jar your-app.jar
-ENTRYPOINT ["java","-jar","image_gallery.jar"]
+COPY --from=build /app/target/image_gallery.jar image_gallery.jar
+ENTRYPOINT ["java", "-jar", "image_gallery.jar"]
 
-EXPOSE 8080
+# Expose the application port
+EXPOSE 8081
