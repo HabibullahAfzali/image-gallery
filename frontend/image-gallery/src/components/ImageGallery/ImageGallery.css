@@ -10,9 +10,11 @@
     grid-template-columns: 1fr;
   }
 }
-
+h1 {
+  text-align: center;
+}
 .image-card {
-  border: 1px solid #ddd;
+  border: 2px solid #e1d70eb2;
   padding: 10px;
   text-align: center;
   margin-bottom: 20px;

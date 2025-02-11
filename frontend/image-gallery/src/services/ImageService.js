@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/images";
+const API_URL = "http://localhost:8081/api/images";
 
 // Fetch all images
 export const fetchImages = () => {
