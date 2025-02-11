@@ -1,58 +1,45 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_CREDENTIALS = credentials('docker-hub-credentials')  // Jenkins credential for Docker Hub (optional if pushing)
-    }
-
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'github-token', url: 'https://github.com/HabibullahAfzali/image-gallery.git'
+                git branch: 'main',
+                    credentialsId: 'github-token',  // GitHub token ID for pulling repo
+                    url: 'https://github.com/HabibullahAfzali/image-gallery.git'
             }
         }
 
         stage('Build Backend (Spring Boot)') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh './gradlew build'  // Modify this for your backend build process
             }
         }
 
         stage('Build Frontend (React)') {
             steps {
-                dir('frontend') { // Ensure you're in the frontend directory
-                    sh 'npm install && npm run build'
+                sh 'npm install && npm run build'
+            }
+        }
+
+        stage('Login to Docker Hub') {
+            steps {
+                withCredentials([string(credentialsId: 'docker-hub-secret', variable: 'DOCKER_TOKEN')]) {
+                    // Use your Docker Hub token to login
+                    sh 'docker login -u habibafzali -p $DOCKER_TOKEN'
                 }
             }
         }
 
-        stage('Build Docker Images') {
+        stage('Run Docker (MySQL)') {
             steps {
-                script {
-                    sh 'docker build -t image-gallery-backend ./backend'
-                    sh 'docker build -t image-gallery-frontend ./frontend'
-                }
-            }
-        }
-
-        stage('Run MySQL') {
-            steps {
-                sh 'docker-compose -f docker-compose.yml up -d mysql'
+                sh 'docker-compose -f docker-compose.yml up -d'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'mvn test'
-            }
-        }
-
-        stage('Deploy Containers') {
-            steps {
-                script {
-                    sh 'docker run -d --name image-gallery-backend --network app-network -p 8081:8081 image-gallery-backend'
-                    sh 'docker run -d --name image-gallery-frontend --network app-network -p 80:80 image-gallery-frontend'
-                }
+                sh './gradlew test'  // Modify for your test process
             }
         }
     }
