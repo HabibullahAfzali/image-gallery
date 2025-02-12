@@ -11,7 +11,7 @@
 	<groupId>com.imagegallery</groupId>
 	<artifactId>image-gallery</artifactId>
 	<version>0.0.1</version>
-	<name>image_gallery</name>
+	<name>gallery</name>
 	<description>Image Gallery is a project where users will be able to have their own image collection and manipulate it easily using web interface.</description>
 	<url/>
 	<licenses>
