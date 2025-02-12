@@ -1,24 +1,31 @@
-version: '3'
 services:
-  mysql:
-    image: mysql:latest
-    container_name: mysql_container
+  gallery:
+    build: .
+    mem_limit: 512m
+    ports:
+      - "8081:8081"
+    environment: 
+      DB_URL: jdbc:mysql://img_gallery:3306/gallerydb?createDatabaseIfNotExist=true&serverTimezone=UTC
+      DB_USER_NAME: root
+      DB_PASSWORD: Toor@123
+    restart: always
+    depends_on:
+      img_gallery:
+        condition: service_healthy
+
+  img_gallery:
+    image: mysql:8.2.0
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: admin@123
       MYSQL_DATABASE: gallerydb
       MYSQL_USER: root
       MYSQL_PASSWORD: admin@123
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      - app-network
-
-volumes:
-  mysql-data:
-    driver: local
-
-networks:
-  app-network:
-    driver: bridge
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
